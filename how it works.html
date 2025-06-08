@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Pariksha</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9faff;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #4f46e5, #6366f1);
+      display: flex;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-logo img {
+      height: 40px;
+    }
+
+    .header-logo span {
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: white;
+    }
+
+    /* WHY SECTION */
+    .features {
+      background: url('./images/bg2.jpg') no-repeat center center / cover;
+      padding: 60px 20px;
+    }
+
+    .feature-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      flex: 1 1 300px;
+      padding: 30px 20px;
+      border-radius: 12px;
+      background-color: rgba(255, 255, 255, 0.08);
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .card img {
+      width: 50px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin: 10px 0 10px;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: #f1f1f1;
+    }
+
+    /* HOW SECTION */
+    .how-it-works {
+      background: url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1470&q=80') no-repeat center center / cover;
+      padding: 60px 20px;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .step {
+      display: flex;
+      gap: 15px;
+    }
+
+    .step-number {
+      font-weight: bold;
+      font-size: 20px;
+      color: #483aa0;
+    }
+
+    .step-content h4 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .step-content p {
+      margin: 5px 0 0;
+      font-size: 15px;
+      color: #555;
+    }
+
+    .screenshot-gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .screenshot-gallery img {
+      width: 300px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    footer {
+      background-color: #4f46e5;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .feature-cards {
+        flex-direction: column;
+      }
+
+      .screenshot-gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .steps {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-logo">
+      <img src="./images/logo.webp" alt="Quiz Pariksha Logo">
+      <span>Quiz Pariksha</span>
+    </div>
+  </header>
+
+  <!-- Why Quiz Pariksha Section -->
+  <section class="features">
+    <div class="section-title">Why Quiz Pariksha?</div>
+    <div class="feature-cards">
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/light-on.png" alt="Concept Icon">
+        <h3>Concept Clarity</h3>
+        <p>Solidify your understanding with meticulously crafted quizzes covering core development concepts.</p>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/workflow.png" alt="Skill Icon">
+        <h3>Skill Application</h3>
+        <p>Apply theoretical knowledge to practical scenarios. Think like a developer, not just memorize.</p>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/speed.png" alt="Speed Icon">
+        <h3>Rapid Improvement</h3>
+        <p>Instant feedback and explanations to learn from mistakes and improve quickly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works">
+    <div class="section-title">How Quiz Pariksha Works</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>Download the App</h4>
+          <p>Get Quiz Pariksha from your favorite app store. It’s free and quick to install.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>Choose Your Topic</h4>
+          <p>Pick from a wide variety of topics, from basics to advanced concepts.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>Take a Quiz</h4>
+          <p>Answer interactive questions and get results instantly.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>Review & Learn</h4>
+          <p>See explanations for each question and learn the logic behind the correct answer.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screenshot Gallery -->
+    <div class="screenshot-gallery">
+      <img src="./images/screenshot1.jpeg" alt="Screenshot 1">
+      <img src="./images/screenshot2.jpeg" alt="Screenshot 2">
+      <img src="./images/screenshot3.jpeg" alt="Screenshot 3">
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Quiz Pariksha. All rights reserved.
+  </footer>
+
+</body>
+</html>
