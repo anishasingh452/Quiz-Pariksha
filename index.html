@@ -12,6 +12,10 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       color: #333;
       background: #f9faff;
@@ -34,7 +38,6 @@
 
     .logo img {
       height: 40px;
-      vertical-align: middle;
     }
 
     .logo span {
@@ -160,7 +163,6 @@
       justify-content: center;
     }
 
-
     .card {
       flex: 1 1 300px;
       border: 1px solid rgba(255, 255, 255, 0.3);
@@ -185,6 +187,27 @@
     .card p {
       font-size: 15px;
       color: #e0e0e0;
+    }
+
+    #quiz {
+      padding: 60px 20px;
+      background: #f0f4ff;
+    }
+
+    #quiz h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-bottom: 28px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     }
 
     footer {
@@ -219,15 +242,15 @@
 <body>
   <header>
     <div class="logo">
-      <img src="./images/logo.webp" alt="Quiz Pariksha Logo" style="height: 40px; vertical-align: middle;">
-      <span style="color: white; font-weight: bold; font-size: 22px; margin-left: 10px;">Quiz Pariksha</span>
+      <img src="./images/logo.webp" alt="Quiz Pariksha Logo">
+      <span>Quiz Pariksha</span>
     </div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="how it works.html">How It Works</a></li>
         <li><a href="#features">Features</a></li>
-        <li><a href="#Quiz">Quiz</a></li>
+        <li><a href="#quiz">Quiz</a></li> <!-- 🛠️ Fixed ID here -->
         <li><a href="#">Contact</a></li>
       </ul>
     </nav>
@@ -258,7 +281,6 @@
     </div>
   </section>
 
-  
   <!-- ================== QUIZ SECTION ================== -->
   <section id="quiz">
     <h2>🧪 Practice Quiz</h2>
