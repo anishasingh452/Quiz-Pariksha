@@ -1,226 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QuizPariksha – Login</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuizPariksha – Login</title>
 
-    <!-- Tailwind via CDN (same version you’re using) -->
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: { primary: "#38bdf8", secondary: "#9333ea" },
-            borderRadius: {
-              none: "0px",
-              sm: "4px",
-              DEFAULT: "8px",
-              md: "12px",
-              lg: "16px",
-              xl: "20px",
-              "2xl": "24px",
-              "3xl": "32px",
-              full: "9999px",
-              button: "8px",
-            },
-          },
-        },
-      };
-    </script>
-
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
-
-    <!-- Extra flair (same as original) -->
-    <style>
-      :where([class^="ri-"])::before { content: "\f3c2"; }
-      body {
-        font-family: 'Inter', sans-serif;
-        background-color: #1e1b4b;
-        background-image: radial-gradient(circle at 10% 20%, #2e2a6e 0%, #1e1b4b 70%);
-        min-height: 100vh;
-        color: white;
-      }
-      h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
-      .glass-card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-      }
-      .glass-card:hover {
-        box-shadow: 0 8px 32px rgba(56, 189, 248, 0.2);
-        border: 1px solid rgba(56, 189, 248, 0.2);
-      }
-      .glow-btn { position: relative; overflow: hidden; transition: all 0.3s ease; }
-      .glow-btn:hover { box-shadow: 0 0 15px rgba(56, 189, 248, 0.5); }
-      .glow-btn.purple:hover { box-shadow: 0 0 15px rgba(147, 51, 234, 0.5); }
-      .starfield { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
-      .star { position: absolute; background-color: white; border-radius: 50%; animation: twinkle var(--duration) infinite ease-in-out; opacity: var(--opacity); }
-      @keyframes twinkle { 0%, 100% { opacity: var(--opacity); } 50% { opacity: var(--opacity-half); } }
-      input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-    </style>
-  </head>
-  <body class="overflow-x-hidden">
-    <div class="starfield" id="starfield"></div>
-
-    <!-- MAIN LOGIN UI (unchanged from your design) -->
-    <main class="min-h-screen flex flex-col items-center justify-center px-4 py-12 relative">
-      <div class="max-w-md w-full text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-['Pacifico']">QuizPariksha</h1>
-        <p class="text-lg text-gray-300 mb-8">Empower Your Exam Journey</p>
-      </div>
-
-      <div class="glass-card rounded-2xl p-8 max-w-md w-full">
-        <h2 class="text-2xl font-semibold mb-6 text-center">Choose Your Role</h2>
-        <div class="flex flex-col space-y-4">
-          <button id="student-btn" class="glow-btn bg-primary hover:bg-primary/90 text-white py-4 px-6 rounded-button flex items-center justify-center space-x-3 whitespace-nowrap">
-            <span class="text-xl">👩‍🎓</span>
-            <span class="font-medium">I'm a Student</span>
-          </button>
-          <button id="teacher-btn" class="glow-btn purple bg-secondary hover:bg-secondary/90 text-white py-4 px-6 rounded-button flex items-center justify-center space-x-3 whitespace-nowrap">
-            <span class="text-xl">👨‍🏫</span>
-            <span class="font-medium">I'm a Teacher</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- AUTH FORM -->
-      <div id="auth-container" class="glass-card rounded-2xl p-8 max-w-md w-full mt-8 hidden">
-        <div id="login-form-wrapper">
-          <h2 class="text-2xl font-semibold mb-6 text-center"><span id="role-text">Login</span></h2>
-          <form id="login-form" class="space-y-4">
-            <!-- Email + Password inputs (same ids) -->
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
-              <input type="email" id="email" class="w-full bg-gray-800/50 border border-gray-700 rounded-button px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="youremail@example.com" required />
-            </div>
-            <div>
-              <label for="password" class="block text-sm font-medium text-gray-300 mb-1">Password</label>
-              <input type="password" id="password" class="w-full bg-gray-800/50 border border-gray-700 rounded-button px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="••••••••" required />
-            </div>
-            <!-- Hidden fields for registration (left intact) -->
-            <div id="student-fields" class="space-y-4 hidden"> … </div>
-            <div id="teacher-fields" class="space-y-4 hidden"> … </div>
-
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <input id="remember" type="checkbox" class="h-4 w-4 bg-gray-800 border-gray-700 rounded text-primary focus:ring-primary" />
-                <label for="remember" class="ml-2 block text-sm text-gray-300">Remember me</label>
-              </div>
-              <a href="#" class="text-sm text-primary hover:text-primary/80">Forgot password?</a>
-            </div>
-
-            <!-- Error box placeholder (injected by JS if auth fails) -->
-            <p id="error-box" class="text-sm text-red-400 hidden"></p>
-
-            <button type="submit" class="w-full glow-btn bg-primary hover:bg-primary/90 text-white py-3 px-4 rounded-button font-medium whitespace-nowrap">Sign In</button>
-
-            <div class="relative flex items-center justify-center mt-4">
-              <div class="border-t border-gray-700 flex-grow"></div>
-              <span class="mx-4 text-sm text-gray-400">OR</span>
-              <div class="border-t border-gray-700 flex-grow"></div>
-            </div>
-
-            <button type="button" class="w-full bg-gray-800 hover:bg-gray-700 text-white py-3 px-4 rounded-button font-medium flex items-center justify-center space-x-2 whitespace-nowrap">
-              <div class="w-5 h-5 flex items-center justify-center"><i class="ri-google-fill text-lg"></i></div>
-              <span>Continue with Google</span>
-            </button>
-
-            <p class="text-sm text-gray-400 text-center mt-4">
-              Don't have an account?
-              <a href="#" id="toggle-register" class="text-primary hover:text-primary/80">Sign up</a>
-            </p>
-          </form>
-        </div>
-      </div>
-      <div class="mt-8 text-center"><p class="text-gray-400 text-sm">© 2025 QuizPariksha. All rights reserved.</p></div>
-    </main>
-
-    <!-- STARRY BACKGROUND (unchanged) -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const starfield = document.getElementById("starfield");
-        const numStars = 200;
-        for (let i = 0; i < numStars; i++) {
-          const star = document.createElement("div");
-          star.classList.add("star");
-          const size = Math.random() * 2 + 1;
-          star.style.width = `${size}px`;
-          star.style.height = `${size}px`;
-          star.style.left = `${Math.random() * 100}%`;
-          star.style.top = `${Math.random() * 100}%`;
-          const opacity = Math.random() * 0.7 + 0.3;
-          star.style.setProperty("--opacity", opacity);
-          star.style.setProperty("--opacity-half", opacity / 2);
-          star.style.setProperty("--duration", `${Math.random() * 3 + 2}s`);
-          starfield.appendChild(star);
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: "#38bdf8", secondary: "#9333ea" },
+          borderRadius: { button: "8px" }
         }
-      });
-    </script>
+      }
+    };
+  </script>
 
-    <!-- ROLE TOGGLE + REGISTER/SIGNIN SWITCH (still yours) -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const studentBtn = document.getElementById("student-btn");
-        const teacherBtn = document.getElementById("teacher-btn");
-        const authContainer = document.getElementById("auth-container");
-        const roleText = document.getElementById("role-text");
-        const studentFields = document.getElementById("student-fields");
-        const teacherFields = document.getElementById("teacher-fields");
-        const toggleRegister = document.getElementById("toggle-register");
-        let isStudent = true;
-        let isLogin = true;
-        function updateAuthForm() {
-          if (isStudent) {
-            studentFields.classList.remove("hidden");
-            teacherFields.classList.add("hidden");
-            roleText.textContent = isLogin ? "Student Login" : "Student Registration";
-          } else {
-            studentFields.classList.add("hidden");
-            teacherFields.classList.remove("hidden");
-            roleText.textContent = isLogin ? "Teacher Login" : "Teacher Registration";
-          }
-          if (isLogin) {
-            studentFields.classList.add("hidden");
-            teacherFields.classList.add("hidden");
-            toggleRegister.textContent = "Sign up";
-          } else {
-            toggleRegister.textContent = "Sign in";
-          }
-        }
-        studentBtn.addEventListener("click", () => { isStudent = true; authContainer.classList.remove("hidden"); updateAuthForm(); });
-        teacherBtn.addEventListener("click", () => { isStudent = false; authContainer.classList.remove("hidden"); updateAuthForm(); });
-        toggleRegister.addEventListener("click", (e) => { e.preventDefault(); isLogin = !isLogin; updateAuthForm(); });
-      });
-    </script>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
 
-    <!-- LOGIN HANDLER: HARD‑CODED CREDS -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const loginForm = document.getElementById("login-form");
-        const errorBox = document.getElementById("error-box");
-        const CORRECT_EMAIL = "admin@example.com";      // 🔒 swap with real backend later
-        const CORRECT_PASSWORD = "password123";
-        loginForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const email = document.getElementById("email").value.trim();
-          const password = document.getElementById("password").value;
-          if (email === CORRECT_EMAIL && password === CORRECT_PASSWORD) {
-            // success ➜ go to home
-            window.location.replace("index.html"); // your real home page path
-          } else {
-            errorBox.textContent = "Invalid email or password 😔";
-            errorBox.classList.remove("hidden");
-          }
-        });
-      });
-    </script>
-  </body>
+  <!-- Extra flair -->
+  <style>
+    body{
+      font-family:"Inter",sans-serif;
+      background:#1e1b4b;
+      background-image:radial-gradient(circle at 10% 20%,#2e2a6e 0%,#1e1b4b 70%);
+      min-height:100vh; color:white; overflow-x:hidden
+    }
+    h1,h2,h3,h4,h5,h6{font-family:"Poppins",sans-serif}
+    .glass-card{background:rgba(255,255,255,.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.1);transition:.3s}
+    .glass-card:hover{box-shadow:0 8px 32px rgba(56,189,248,.2);border-color:rgba(56,189,248,.2)}
+    .glow-btn{position:relative;overflow:hidden;transition:.3s}
+    .glow-btn:hover{box-shadow:0 0 15px rgba(56,189,248,.5)}
+    .glow-btn.purple:hover{box-shadow:0 0 15px rgba(147,51,234,.5)}
+    /* Starfield */
+    .starfield{position:absolute;inset:0;z-index:-1;overflow:hidden}
+    .star{position:absolute;background:white;border-radius:50%;animation:twinkle var(--d) infinite ease-in-out;opacity:var(--o)}
+    @keyframes twinkle{0%,100%{opacity:var(--o)}50%{opacity:calc(var(--o)/2)}}
+    /* Modal */
+    .modal{display:none;position:fixed;inset:0;z-index:2000;justify-content:center;align-items:center}
+    .modal.open{display:flex}
+    .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+  </style>
+</head>
+<body>
+
+  <!-- Starry sky -->
+  <div class="starfield" id="starfield"></div>
+
+  <!-- Landing content -->
+  <main class="min-h-screen flex flex-col items-center justify-center px-4 py-12 relative">
+    <div class="max-w-md w-full text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-['Pacifico']">
+        QuizPariksha
+      </h1>
+      <p class="text-lg text-gray-300 mb-8">Empower Your Exam Journey</p>
+    </div>
+
+    <div class="glass-card rounded-2xl p-8 max-w-md w-full">
+      <h2 class="text-2xl font-semibold mb-6 text-center">Choose Your Role</h2>
+      <div class="flex flex-col space-y-4">
+        <button id="student-btn"
+                class="glow-btn bg-primary hover:bg-primary/90 text-white py-4 px-6 rounded-button flex items-center justify-center space-x-3 whitespace-nowrap">
+          <span class="text-xl">👩‍🎓</span><span class="font-medium">I'm a Student</span>
+        </button>
+        <button id="teacher-btn"
+                class="glow-btn purple bg-secondary hover:bg-secondary/90 text-white py-4 px-6 rounded-button flex items-center justify-center space-x-3 whitespace-nowrap">
+          <span class="text-xl">👨‍🏫</span><span class="font-medium">I'm a Teacher</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-8 text-center">
+      <p class="text-gray-400 text-sm">© 2025 QuizPariksha. All rights reserved.</p>
+    </div>
+  </main>
+
+  <!-- ================= MODAL ================= -->
+  <div id="login-modal" class="modal">
+    <!-- backdrop -->
+    <div class="modal-backdrop" tabindex="-1"></div>
+
+    <!-- modal card -->
+    <div class="glass-card rounded-2xl p-8 w-[90%] max-w-md relative">
+      <button id="close-modal"
+              class="absolute top-3 right-3 text-gray-400 hover:text-white text-xl">
+        ❌
+      </button>
+
+      <h2 id="role-heading" class="text-2xl font-semibold mb-6 text-center">Login</h2>
+
+      <form id="login-form" class="space-y-4">
+        <!-- Email / password -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+          <input type="email" id="email"
+                 class="w-full bg-gray-800/50 border border-gray-700 rounded-button px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                 placeholder="youremail@example.com" required />
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-300 mb-1">Password</label>
+          <input type="password" id="password"
+                 class="w-full bg-gray-800/50 border border-gray-700 rounded-button px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                 placeholder="••••••••" required />
+        </div>
+
+        <!-- Optional extra fields (hidden for now) -->
+        <div id="student-fields" class="space-y-4 hidden">…</div>
+        <div id="teacher-fields" class="space-y-4 hidden">…</div>
+
+        <!-- Remember + link -->
+        <div class="flex items-center justify-between">
+          <label class="flex items-center text-sm text-gray-300">
+            <input id="remember" type="checkbox"
+                   class="h-4 w-4 bg-gray-800 border-gray-700 rounded text-primary focus:ring-primary">
+            <span class="ml-2">Remember me</span>
+          </label>
+          <a href="#" class="text-sm text-primary hover:text-primary/80">Forgot password?</a>
+        </div>
+
+        <p id="error-box" class="text-sm text-red-400 hidden"></p>
+
+        <!-- Sign In -->
+        <button type="submit"
+                class="w-full glow-btn bg-primary hover:bg-primary/90 text-white py-3 px-4 rounded-button font-medium">
+          Sign In
+        </button>
+
+        <div class="relative flex items-center justify-center mt-4">
+          <div class="border-t border-gray-700 flex-grow"></div>
+          <span class="mx-4 text-sm text-gray-400">OR</span>
+          <div class="border-t border-gray-700 flex-grow"></div>
+        </div>
+
+        <button type="button"
+                class="w-full bg-gray-800 hover:bg-gray-700 text-white py-3 px-4 rounded-button font-medium flex items-center justify-center space-x-2">
+          <i class="ri-google-fill text-lg"></i><span>Continue with Google</span>
+        </button>
+
+        <p class="text-sm text-gray-400 text-center mt-4">
+          Don't have an account?
+          <a href="#" id="toggle-register"
+             class="text-primary hover:text-primary/80">Sign up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================ SCRIPTS ================ -->
+  <script>
+    /* -------------- sparkly sky -------------- */
+    document.addEventListener("DOMContentLoaded", () => {
+      const starfield=document.getElementById("starfield");
+      const n=200;
+      for(let i=0;i<n;i++){
+        const s=document.createElement("div");
+        s.classList.add("star");
+        const size=Math.random()*2+1;
+        s.style.width=`${size}px`;
+        s.style.height=`${size}px`;
+        s.style.left=`${Math.random()*100}%`;
+        s.style.top=`${Math.random()*100}%`;
+        const o=Math.random()*0.7+0.3;
+        s.style.setProperty("--o",o);
+        s.style.setProperty("--d",`${Math.random()*3+2}s`);
+        starfield.appendChild(s);
+      }
+    });
+
+    /* -------------- modal logic -------------- */
+    const modal          = document.getElementById("login-modal");
+    const backdrop       = modal.querySelector(".modal-backdrop");
+    const closeBtn       = document.getElementById("close-modal");
+    const studentBtn     = document.getElementById("student-btn");
+    const teacherBtn     = document.getElementById("teacher-btn");
+    const roleHeading    = document.getElementById("role-heading");
+    const studentFields  = document.getElementById("student-fields");
+    const teacherFields  = document.getElementById("teacher-fields");
+    const toggleRegister = document.getElementById("toggle-register");
+    const loginForm      = document.getElementById("login-form");
+    const errorBox       = document.getElementById("error-box");
+
+    let isStudent = true;
+    let isLogin   = true;
+
+    function openModal(role){
+      isStudent = (role === "student");
+      updateRoleText();
+      modal.classList.add("open");
+      document.body.style.overflow="hidden";  // prevent page scroll
+      document.getElementById("email").focus();
+    }
+    function closeModal(){
+      modal.classList.remove("open");
+      document.body.style.overflow="";
+      errorBox.classList.add("hidden");
+      loginForm.reset();
+      isLogin = true; // reset mode
+    }
+    function updateRoleText(){
+      studentFields.classList.add("hidden");
+      teacherFields.classList.add("hidden");
+      if(isLogin){
+        roleHeading.textContent = isStudent ? "Student Login"  : "Teacher Login";
+      }else{
+        roleHeading.textContent = isStudent ? "Student Registration" : "Teacher Registration";
+        // show extra fields here if you need them
+      }
+    }
+
+    studentBtn .addEventListener("click",()=>openModal("student"));
+    teacherBtn .addEventListener("click",()=>openModal("teacher"));
+    closeBtn   .addEventListener("click",closeModal);
+    backdrop   .addEventListener("click",closeModal);
+    document.addEventListener("keydown",e=>{ if(e.key==="Escape" && modal.classList.contains("open")) closeModal(); });
+
+    toggleRegister.addEventListener("click",e=>{
+      e.preventDefault();
+      isLogin = !isLogin;
+      updateRoleText();
+    });
+
+    /* ----- simple hard‑coded login (swap later) ----- */
+    const CORRECT_EMAIL="admin@example.com";
+    const CORRECT_PASSWORD="password123";
+    loginForm.addEventListener("submit",e=>{
+      e.preventDefault();
+      const email   = document.getElementById("email").value.trim();
+      const pwd     = document.getElementById("password").value;
+      if(email===CORRECT_EMAIL && pwd===CORRECT_PASSWORD){
+        alert("✅ Login successful! (replace with real redirect)");
+        closeModal();
+      }else{
+        errorBox.textContent="Invalid email or password 😔";
+        errorBox.classList.remove("hidden");
+      }
+    });
+  </script>
+</body>
 </html>
