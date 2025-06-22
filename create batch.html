@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Batch | Quiz Pariksha</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9faff;
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+    }
+
+    .left, .right {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .left iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .right h2 {
+      font-size: 24px;
+      color: #4f46e5;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .batch-list {
+      background: #eef2ff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .batch-item {
+      background-color: white;
+      border-left: 4px solid #4f46e5;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      padding: 12px 16px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .batch-item h4 {
+      margin: 0 0 4px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .batch-item p {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .left, .right {
+        height: auto;
+      }
+      .left {
+        padding-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT: Google Form -->
+  <div class="left">
+    <iframe src="https://forms.gle/N4b2uxpDazpFQYgF6" title="Create Batch Form"></iframe>
+  </div>
+
+  <!-- RIGHT: Batch List -->
+  <div class="right">
+    <h2>📄 Existing Batches</h2>
+    <div class="batch-list" id="batchList">Loading batches...</div>
+  </div>
+
+  <!-- JS: Fetch Google Sheets CSV -->
+  <script>
+    const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTpt6X0ZtSUDElpf48r4Xtqgd9fEADYnAYmbJw-UIZB_R9JY91DuFHNz7qiunoSULX5y2JskdGhzXtA/pub?output=csv";
+
+    fetch(sheetUrl)
+      .then(res => res.text())
+      .then(csvText => {
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',').map(h => h.trim());
+        const rows = lines.slice(1);
+
+        const batchList = document.getElementById('batchList');
+        batchList.innerHTML = '';
+
+        rows.forEach(row => {
+          const values = row.split(',').map(v => v.trim());
+          const data = Object.fromEntries(headers.map((h, i) => [h, values[i]]));
+
+          const div = document.createElement('div');
+          div.className = 'batch-item';
+          div.innerHTML = `
+            <h4>${data['Batch Name'] || 'Unnamed Batch'}</h4>
+            <p>📅 ${data['Start Date']} to ${data['End Date'] || '—'}<br/>
+            🎯 ${data['Quizzes'] || 'N/A'} | 👥 ${data['Max Students'] || '∞'}</p>
+          `;
+          batchList.appendChild(div);
+        });
+      })
+      .catch(err => {
+        document.getElementById('batchList').innerText = 'Error loading batch data.';
+        console.error('❌ CSV fetch error:', err);
+      });
+  </script>
+
+</body>
+</html>
