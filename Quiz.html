@@ -1,70 +1,289 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Section</title>
-    <style>
-#quiz {
-  padding: 80px 20px;
-  background: linear-gradient(to bottom right, #dbeafe, #bfdbfe); /* Light blue gradient */
-}
 
-.quiz-wrapper {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.quiz-wrapper h2 {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 700;
-  color: #1e3a8a; /* Deep blue text for contrast */
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-.quiz-frame {
-  position: relative;
-  width: 100%;
-  padding-top: 140%;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-.quiz-frame iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.04);
-}
-
-@media (max-width: 768px) {
-  #quiz {
-    padding: 60px 16px;
-  }
-
-  .quiz-wrapper h2 {
-    margin-bottom: 24px;
-  }
-}
-    </style>
-</head>
-<body>
-<section id="quiz">
-  <div class="quiz-wrapper">
-    <h2>Practice Quiz</h2>
-    <div class="quiz-frame">
-      <iframe
-        src="https://forms.gle/U8NHGMLWLbhnWpcS7"
-        allowfullscreen
-        loading="lazy"
-      ></iframe>
-    </div>
-  </div>
-</section>
-</body>
-</html>
+  <body class="min-h-screen">
+    <div
+      id="stars-container"
+      class="fixed inset-0 z-0 pointer-events-none"
+    ></div>
+    <!-- Navigation -->
+    <nav class="relative z-10 px-6 py-4 border-b border-gray-800">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="logo text-2xl font-bold text-white glow-text"
+          >CampVerse</a
+        >
+        <div class="hidden md:flex space-x-8 items-center">
+          <a
+            href="#features"
+            class="text-gray-300 hover:text-white transition-colors"
+            >Features</a
+          >
+          <a
+            href="#events"
+            class="text-gray-300 hover:text-white transition-colors"
+            >Events</a
+          >
+          <a
+            href="#testimonials"
+            class="text-gray-300 hover:text-white transition-colors"
+            >Testimonials</a
+          >
+          <a
+            href="#faq"
+            class="text-gray-300 hover:text-white transition-colors"
+            >FAQ</a
+          >
+        </div>
+        <div class="flex items-center space-x-4">
+          <button
+            id="login-btn"
+            class="px-4 py-2 text-white border border-primary rounded-button hover:bg-primary/20 transition-colors whitespace-nowrap"
+          >
+            Log In
+          </button>
+          <button
+            id="signup-btn"
+            class="px-4 py-2 bg-primary text-white rounded-button hover:bg-primary/80 transition-colors glow-effect whitespace-nowrap"
+          >
+            Sign Up
+          </button>
+        </div>
+        <button
+          class="md:hidden flex items-center justify-center w-10 h-10 text-white"
+        >
+          <i class="ri-menu-line ri-lg"></i>
+        </button>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero-bg relative z-0 py-20 md:py-32">
+      <div class="container mx-auto px-6 w-full">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 mb-10 md:mb-0">
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight glow-text"
+            >
+              Uniting Campuses.<br />Empowering Talent.
+            </h1>
+            <p class="text-xl text-gray-300 mb-8 max-w-lg">
+              Discover, register, and participate in cultural, technical, and
+              academic events across colleges in India with just a few clicks.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+            >
+              <button
+                class="px-6 py-3 bg-secondary text-white rounded-button text-lg font-medium hover:bg-secondary/80 transition-colors glow-pink whitespace-nowrap"
+              >
+                Join with College Email
+              </button>
+              <button
+                class="px-6 py-3 border border-primary text-white rounded-button text-lg font-medium hover:bg-primary/20 transition-colors whitespace-nowrap"
+              >
+                Explore Events
+              </button>
+            </div>
+          </div>
+          <div class="md:w-1/2 flex justify-center">
+            <img
+              src="https://readdy.ai/api/search-image?query=futuristic%2520digital%2520interface%2520showing%2520college%2520events%2520and%2520activities%252C%2520holographic%2520display%2520with%2520event%2520cards%2520floating%2520in%2520space%252C%2520cosmic%2520background%252C%2520purple%2520and%2520blue%2520glowing%2520elements%252C%2520high%2520quality%252C%2520detailed%2520UI%2520visualization&width=600&height=500&seq=hero1&orientation=landscape"
+              alt="CampVerse Platform"
+              class="rounded-lg shadow-2xl glow-effect max-w-full h-auto"
+            />
+          </div>
+        </div>
+        <div class="flex justify-center mt-16">
+          <div
+            class="bg-gray-900/60 backdrop-blur-sm py-4 px-8 rounded-full flex flex-wrap justify-center gap-x-8 gap-y-2 glow-effect"
+          >
+            <div class="flex items-center">
+              <span class="text-2xl font-bold text-white mr-2">500+</span>
+              <span class="text-gray-300">Colleges</span>
+            </div>
+            <div class="flex items-center">
+              <span class="text-2xl font-bold text-white mr-2">3000+</span>
+              <span class="text-gray-300">Events</span>
+            </div>
+            <div class="flex items-center">
+              <span class="text-2xl font-bold text-white mr-2">10,000+</span>
+              <span class="text-gray-300">Participants</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-900/30">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 glow-text">
+            Explore the CampVerse
+          </h2>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+            A complete platform designed to connect students with events that
+            matter to them.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div
+            class="bg-gray-800/60 rounded-lg p-8 transition-all duration-300 hover:glow-cyan"
+          >
+            <div
+              class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="ri-search-line ri-xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Discover</h3>
+            <p class="text-gray-300">
+              Explore events from colleges across India, filtered by your
+              interests, location, and availability.
+            </p>
+          </div>
+          <!-- Feature 2 -->
+          <div
+            class="bg-gray-800/60 rounded-lg p-8 transition-all duration-300 hover:glow-cyan"
+          >
+            <div
+              class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="ri-user-add-line ri-xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Register</h3>
+            <p class="text-gray-300">
+              Secure registration with your college ID, ensuring authentic
+              participation and streamlined access.
+            </p>
+          </div>
+          <!-- Feature 3 -->
+          <div
+            class="bg-gray-800/60 rounded-lg p-8 transition-all duration-300 hover:glow-cyan"
+          >
+            <div
+              class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6"
+            >
+              <i class="ri-group-line ri-xl text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Participate</h3>
+            <p class="text-gray-300">
+              Join events virtually or in-person, connect with peers, and
+              showcase your talents on a national stage.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Dashboard Preview Section -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 glow-text">
+            Experience CampVerse
+          </h2>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+            Intuitive dashboards for both students and institutions.
+          </p>
+        </div>
+        <div class="flex flex-col md:flex-row gap-8">
+          <!-- User Dashboard Preview -->
+          <div
+            class="md:w-1/2 bg-gray-800/60 rounded-lg overflow-hidden glow-effect"
+          >
+            <div
+              class="bg-gray-700 px-6 py-4 flex items-center justify-between"
+            >
+              <h3 class="font-bold">Student Dashboard</h3>
+              <div class="flex space-x-2">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+            </div>
+            <div class="p-6">
+              <img
+                src="https://readdy.ai/api/search-image?query=futuristic%2520student%2520dashboard%2520UI%2520with%2520event%2520cards%252C%2520calendar%252C%2520and%2520notifications%252C%2520dark%2520space%2520theme%2520with%2520purple%2520and%2520blue%2520accents%252C%2520clean%2520modern%2520interface%252C%2520high%2520quality%2520UI%2520design%252C%2520detailed%2520screen%2520mockup&width=600&height=400&seq=dash1&orientation=landscape"
+                alt="Student Dashboard"
+                class="rounded-lg w-full h-auto"
+              />
+              <div class="mt-6 space-y-4">
+                <div class="flex items-center">
+                  <div
+                    class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-4"
+                  >
+                    <i class="ri-calendar-line ri-lg text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Personalized Event Feed</h4>
+                    <p class="text-sm text-gray-400">
+                      Events tailored to your interests and previous
+                      participation
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div
+                    class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-4"
+                  >
+                    <i class="ri-bookmark-line ri-lg text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Save & RSVP</h4>
+                    <p class="text-sm text-gray-400">
+                      Bookmark events and get reminders before they start
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Institution Dashboard Preview -->
+          <div
+            class="md:w-1/2 bg-gray-800/60 rounded-lg overflow-hidden glow-effect"
+          >
+            <div
+              class="bg-gray-700 px-6 py-4 flex items-center justify-between"
+            >
+              <h3 class="font-bold">Institution Dashboard</h3>
+              <div class="flex space-x-2">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+            </div>
+            <div class="p-6">
+              <img
+                src="https://readdy.ai/api/search-image?query=futuristic%2520institution%2520dashboard%2520UI%2520with%2520event%2520management%2520tools%252C%2520analytics%2520charts%252C%2520and%2520participant%2520lists%252C%2520dark%2520space%2520theme%2520with%2520purple%2520and%2520blue%2520accents%252C%2520clean%2520modern%2520interface%252C%2520high%2520quality%2520UI%2520design%252C%2520detailed%2520screen%2520mockup&width=600&height=400&seq=dash2&orientation=landscape"
+                alt="Institution Dashboard"
+                class="rounded-lg w-full h-auto"
+              />
+              <div class="mt-6 space-y-4">
+                <div class="flex items-center">
+                  <div
+                    class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-4"
+                  >
+                    <i class="ri-add-circle-line ri-lg text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Create & Manage Events</h4>
+                    <p class="text-sm text-gray-400">
+                      Easily publish and update event details
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div
+                    class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-4"
+                  >
+                    <i class="ri-bar-chart-line ri-lg text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Analytics & Insights</h4>
+                    <p class="text-sm text-gray-400">
+                      Track registrations, attendance, and engagement
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
