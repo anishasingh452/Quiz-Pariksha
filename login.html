@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QuizPariksha – Smart Exam Prep</title>
   <link rel="icon" href="images/logo.jpg" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.tailwindcss.com/3.4.16"></script>
   <script>
@@ -23,38 +23,28 @@
       }
     }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
     }
     .hero-section {
-      background-image: radial-gradient(circle at top left, #2e2a6e 0%, #1e1b4b 80%);
+      background-image: url('https://images.unsplash.com/photo-1581093588401-6c4b6c2a3bb4?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
     }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    .glass-card:hover {
-      box-shadow: 0 8px 32px rgba(56, 189, 248, 0.2);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-    }
-    .glow-btn:hover {
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
-    }
-    .group:hover .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
+    .hero-overlay {
+      background: linear-gradient(90deg, rgba(17, 24, 39, 0.85), rgba(17, 24, 39, 0.6));
     }
     .dropdown-menu {
       visibility: hidden;
       opacity: 0;
       transition: all 0.3s ease-in-out;
+    }
+    .group:hover .dropdown-menu {
+      visibility: visible;
+      opacity: 1;
     }
   </style>
 </head>
@@ -64,6 +54,7 @@
     AOS.init({ duration: 1000, once: true, offset: 100 });
   });
 </script>
+
 <header class="w-full bg-gray-900/80 backdrop-blur-sm fixed top-0 z-50">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <a href="#" class="flex items-center gap-2">
@@ -77,134 +68,19 @@
       <a href="#contact" class="text-sm text-gray-300 hover:text-white transition">Contact</a>
     </div>
     <div class="relative group">
-      <button onclick="openAuth()" class="flex items-center gap-2 text-white font-semibold">
+      <button class="flex items-center gap-2 text-white font-semibold">
         <span>Login / Sign Up</span>
         <div class="w-8 h-8 flex items-center justify-center">
           <i class="ri-login-box-line ri-lg"></i>
         </div>
       </button>
-    </div>
-  </div>
-</header>
-<!-- <header class="w-full bg-gray-900/80 backdrop-blur-sm fixed top-0 z-50">
-  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <a href="#" class="flex items-center gap-2">
-      <div class="w-10 h-10 flex items-center justify-center bg-primary rounded-full">
-        <i class="ri-quill-pen-line text-white ri-lg"></i>
-      </div>
-      <span class="text-2xl font-['Pacifico'] text-white">Quiz Pariksha</span>
-    </a>
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#features" class="text-sm text-gray-300 hover:text-white transition">Features</a>
-      <a href="#contact" class="text-sm text-gray-300 hover:text-white transition">Contact</a>
-    </div>
-    <div class="relative group"> -->
-      <!-- <section class="hero-section relative min-h-screen flex items-center pt-16">
-  <div class="hero-overlay absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/50"></div>
-  <div class="container mx-auto px-4 py-20 relative z-10 w-full">
-    <div class="max-w-2xl">
-      <p class="text-sm font-medium tracking-wider text-gray-300 mb-4" data-aos="fade-up">LEARN • COMPETE • GROW</p>
-      <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6" data-aos="fade-up" data-aos-delay="100">Master Your Concepts with Interactive Quizzes.</h1>
-      <p class="text-xl text-gray-300 mb-8" data-aos="fade-up" data-aos-delay="200">Quiz Pariksha helps you strengthen your preparation with practice tests, instant feedback, and detailed analytics. Learn smart. Practice better.</p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a href="#features" class="inline-block bg-primary hover:bg-primary/90 text-white py-3 px-8 rounded-button font-medium transition-all duration-300 whitespace-nowrap">Explore Features</a>
-        <a href="#contact" class="inline-block bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white py-3 px-8 rounded-button font-medium transition-all duration-300 whitespace-nowrap">Get in Touch</a>
-      </div>
-    </div>
-  </div>
-</section> -->
-      <!-- <button class="flex items-center gap-2 text-white font-semibold">
-        <span>MENU</span>
-        <div class="w-8 h-8 flex items-center justify-center">
-          <i class="ri-menu-line ri-lg"></i>
-        </div>
-      </button> -->
       <div class="dropdown-menu absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-gray-800 border border-gray-700 z-50">
-        <a href="/login.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
-        <a href="/signup.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Sign Up</a>
+        <a href="#" onclick="showAuthModal('login')" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
+        <a href="#" onclick="showAuthModal('signup')" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Sign Up</a>
       </div>
     </div>
   </div>
 </header>
-<style>
-body {
-  font-family: 'Inter', sans-serif;
-}
-.hero-section {
-  background-image: url('https://images.unsplash.com/photo-1581093588401-6c4b6c2a3bb4?auto=format&fit=crop&w=1920&q=80');
-  background-size: cover;
-  background-position: center;
-}
-.hero-overlay {
-  background: linear-gradient(90deg, rgba(17, 24, 39, 0.85) 0%, rgba(17, 24, 39, 0.7) 50%, rgba(17, 24, 39, 0.5) 100%);
-}
-.article-card {
-  transition: transform 0.3s ease;
-}
-.article-card:hover {
-  transform: translateY(-5px);
-}
-</style>
-</head>
-<body class="bg-gray-950 text-white">
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      offset: 100
-    });
-  });
-</script>
-
-</head>
-<body class="bg-gray-950 text-white">
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    AOS.init({ duration: 1000, once: true, offset: 100 });
-  });
-</script>
-
-<!-- Header -->
-<!-- <header class="w-full bg-gray-900/80 backdrop-blur-sm fixed top-0 z-50">
-  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <a href="#" class="flex items-center gap-2">
-      <div class="w-10 h-10 flex items-center justify-center bg-primary rounded-full">
-        <i class="ri-quill-pen-line text-white ri-lg"></i>
-      </div>
-      <span class="text-2xl font-['Pacifico'] text-white">Quiz Pariksha</span>
-    </a>
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#features" class="text-sm text-gray-300 hover:text-white transition">Features</a>
-      <a href="#contact" class="text-sm text-gray-300 hover:text-white transition">Contact</a>
-    </div>
-    <div class="relative group">
-      <button class="flex items-center gap-2 text-white font-semibold">
-        <span>MENU</span>
-        <div class="w-8 h-8 flex items-center justify-center">
-          <i class="ri-menu-line ri-lg"></i>
-        </div>
-      </button>
-      <div class="dropdown-menu absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-gray-800 border border-gray-700 z-50">
-        <a href="/login.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
-        <a href="/signup.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Sign Up</a>
-      </div>
-    </div>
-  </div>
-</header> -->
-
-<!-- Make sure this CSS is in your <style> block -->
-<style>
-  .group:hover .dropdown-menu {
-    visibility: visible;
-    opacity: 1;
-    transition: all 0.3s ease-in-out;
-  }
-  .dropdown-menu {
-    visibility: hidden;
-    opacity: 0;
-  }
-</style>
 
 <section class="hero-section relative min-h-screen flex items-center pt-16">
   <div class="hero-overlay absolute inset-0"></div>
@@ -275,7 +151,7 @@ body {
 
 <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
   <div class="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md relative">
-    <h2 class="text-2xl font-bold text-white mb-4 text-center">Login or Sign Up</h2>
+    <h2 class="text-2xl font-bold text-white mb-4 text-center" id="authTitle">Login</h2>
     <div class="flex justify-center gap-4 mb-6">
       <button onclick="selectRole('teacher')" class="px-4 py-2 bg-primary text-white rounded hover:bg-primary/80">I'm a Teacher</button>
       <button onclick="selectRole('student')" class="px-4 py-2 bg-secondary text-white rounded hover:bg-secondary/80">I'm a Student</button>
@@ -283,34 +159,37 @@ body {
     <form onsubmit="authSubmit(event)">
       <input type="email" id="authEmail" class="w-full mb-4 p-2 rounded bg-gray-800 text-white" placeholder="Enter your email" required />
       <input type="password" id="authPassword" class="w-full mb-4 p-2 rounded bg-gray-800 text-white" placeholder="Enter your password" required />
-      <button type="submit" class="w-full bg-primary hover:bg-primary/80 text-white py-2 px-4 rounded">Continue</button>
+      <button type="submit" class="w-full bg-primary hover:bg-primary/80 text-white py-2 px-4 rounded" id="authButton">Continue</button>
     </form>
     <p id="authStatus" class="text-center text-sm text-red-400 mt-4"></p>
     <button onclick="closeAuth()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">&times;</button>
   </div>
 </div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script>
-  const supabaseUrl = "https://vhighahragcgqndcsxmn.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZoaWdoYWhyYWdjZ3FuZGNzeG1uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3MjQwNDAsImV4cCI6MjA2NTMwMDA0MH0.29c4p4OFdvXvo6AgjGlFG8M0Msotw_1VRQf6kYUe_dM";
-  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+  const supabase = window.supabase.createClient(
+    "https://vhighahragcgqndcsxmn.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZoaWdoYWhyYWdjZ3FuZGNzeG1uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3MjQwNDAsImV4cCI6MjA2NTMwMDA0MH0.29c4p4OFdvXvo6AgjGlFG8M0Msotw_1VRQf6kYUe_dM"
+  );
 
-  // ✅ Important: Declare selectedRole before any function uses it
   let selectedRole = null;
+  let currentMode = 'login';
 
-  function selectRole(role) {
-    selectedRole = role;
-    document.getElementById('authStatus').textContent = `Selected Role: ${role.toUpperCase()}`;
-  }
-
-  function openAuth() {
+  function showAuthModal(mode) {
+    currentMode = mode;
     document.getElementById('authModal').classList.remove('hidden');
+    document.getElementById('authTitle').textContent = mode === 'login' ? 'Login' : 'Sign Up';
+    document.getElementById('authButton').textContent = mode === 'login' ? 'Login' : 'Sign Up';
   }
 
   function closeAuth() {
     document.getElementById('authModal').classList.add('hidden');
+  }
+
+  function selectRole(role) {
+    selectedRole = role;
+    document.getElementById('authStatus').textContent = `Selected Role: ${role.toUpperCase()}`;
   }
 
   async function authSubmit(e) {
@@ -324,84 +203,39 @@ body {
       return;
     }
 
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    let userId;
 
-    if (error) {
-      const { error: signUpError } = await supabase.auth.signUp({ email, password });
+    const { data: loginData, error: loginError } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (loginError) {
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({ email, password });
       if (signUpError) {
-        status.textContent = "Login or Signup failed.";
-        return;
-      } else {
-        status.textContent = "Account created! Please login again.";
+        status.textContent = "Signup failed: " + signUpError.message;
         return;
       }
+      userId = signUpData?.user?.id;
+      if (userId) {
+        await supabase.from("user_roles").insert({ user_id: userId, role: selectedRole });
+      }
+      status.textContent = "Account created! Please login again.";
+      return;
+    } else {
+      userId = loginData?.user?.id;
     }
 
-    if (selectedRole === "teacher") {
-      window.location.href = "/teacher/dashboard.html";
-    } else {
-      window.location.href = "/student/dashboard.html";
+    if (userId) {
+      const { data: rolesData } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", userId)
+        .single();
+
+      const role = rolesData?.role || selectedRole;
+
+      window.location.href = role === "teacher" ? "/teacher/create-batch.html" : "/student/results.html";
     }
   }
 </script>
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script>
-  const supabaseUrl = "https://vhighahragcgqndcsxmn.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZoaWdoYWhyYWdjZ3FuZGNzeG1uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3MjQwNDAsImV4cCI6MjA2NTMwMDA0MH0.29c4p4OFdvXvo6AgjGlFG8M0Msotw_1VRQf6kYUe_dM";
-  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-  let selectedRole = null;
-
-  function selectRole(role) {
-    selectedRole = role;
-    document.getElementById('authStatus').textContent = `Selected Role: ${role.toUpperCase()}`;
-  }
-
-  function openAuth() {
-    document.getElementById('authModal').classList.remove('hidden');
-  }
-
-  function closeAuth() {
-    document.getElementById('authModal').classList.add('hidden');
-  }
-
-  async function authSubmit(e) {
-    e.preventDefault();
-    const email = document.getElementById("authEmail").value;
-    const password = document.getElementById("authPassword").value;
-    const status = document.getElementById("authStatus");
-
-    if (!selectedRole) {
-      status.textContent = "Please select a role first.";
-      return;
-    }
-
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-
-    if (error) {
-      const { error: signUpError } = await supabase.auth.signUp({ email, password });
-      if (signUpError) {
-        status.textContent = "Login or Signup failed.";
-        return;
-      } else {
-        status.textContent = "Account created! Please login again.";
-        return;
-      }
-    }
-
-    if (selectedRole === "teacher") {
-      window.location.href = "/teacher/dashboard.html";
-    } else {
-      window.location.href = "/student/dashboard.html";
-    }
-  }
-</script> -->
 </body>
 </html>
 
-<footer class="py-12 bg-gray-950 text-center text-gray-400">
-  <p>&copy; 2025 Quiz Pariksha. All rights reserved.</p>
-</footer>
-</body>
-</html>
